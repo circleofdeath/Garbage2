@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Lab4Server {
     public static String tmp;
 
-    public static void main(String[] args) {
+    public static void main(String[] sargs) {
         IOL.load();
         IOLServer.start(connection -> {
             connection.onServerPacketReceived("FileSend", serverPacket -> {
