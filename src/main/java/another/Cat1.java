@@ -2,32 +2,32 @@ package another;
 
 public class Cat1 {
     public static void client() {
-        Globals.startClient((input, output) -> {
-            byte[] content = Globals.readFromFile(Globals.file).getBytes();
-            output.writeInt(content.length);
+        globals.startclient((input, output) -> {
+            byte[] content = globals.readfromfile(globals.file).getbytes();
+            output.writeint(content.length);
 
-            if(input.readBoolean()) {
+            if(input.readboolean()) {
                 output.write(content);
-                int len = input.readInt();
+                int len = input.readint();
                 byte[] content2 = new byte[len];
-                input.readFully(content2);
-                Globals.writeToFile(Globals.file, new String(content2));
+                input.readfully(content2);
+                globals.writetofile(globals.file, new string(content2));
             }
         });
     }
 
     public static void server() {
-        Globals.startServer((input, output) -> {
-            int len = input.readInt();
+        globals.startserver((input, output) -> {
+            int len = input.readint();
 
             if(len >= 1024) {
-                output.writeBoolean(false);
+                output.writeboolean(false);
             } else {
-                output.writeBoolean(true);
+                output.writeboolean(true);
                 byte[] content = new byte[len];
-                input.readFully(content);
-                Globals.writeToFile(Globals.file, new String(content));
-                output.writeInt(len);
+                input.readfully(content);
+                globals.writetofile(globals.file, new string(content));
+                output.writeint(len);
                 output.write(content);
             }
         });

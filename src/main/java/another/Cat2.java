@@ -16,7 +16,7 @@ public class Cat2 {
             }
         });
     }
-
+ 
     public static void server() {
         Globals.startServer((input, output) -> {
             int len = input.readInt();

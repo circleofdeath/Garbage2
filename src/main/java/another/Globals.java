@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.security.MessageDigest;
 
 /** 
  * The class to reduce boilerplate code 
@@ -63,6 +64,26 @@ public class Globals {
             case "cat1s": Cat1.server(); break;
             case "cat2c": Cat2.client(); break;
             case "cat2s": Cat2.server(); break;
+            case "cat3c": Cat3.client(); break;
+            case "cat3s": Cat3.server(); break;
+            case "cat4c": Cat4.client(); break;
+            case "cat4s": Cat4.server(); break;
+        }
+    }
+
+    public static String calculateHash(byte[] fileContent) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hashBytes = digest.digest(fileContent);
+            StringBuilder hashString = new StringBuilder();
+
+            for(byte b : hashBytes) {
+                hashString.append(String.format("%02x", b));
+            }
+                        
+            return hashString.toString();
+        } catch(Throwable exception) {
+            throw new RuntimeException(exception);
         }
     }
 }
